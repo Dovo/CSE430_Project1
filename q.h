@@ -22,7 +22,7 @@ item NewItem()
 
 void InitQueue(item **head)
 {
-	head = NULL;
+	*head = NULL;
 }
 
 void AddQueue(item **head, item p)
@@ -49,17 +49,17 @@ void AddQueue(item **head, item p)
 	}
 }
 
-item DelQueue(item *head)
+item DelQueue(item **head)
 {
-	if(head == NULL)
+	if(*head == NULL)
 	{
 		printf("Error: could not delete, queue is empty\n");
-		return *head;
+		return **head;
 	}
 
 	else
 	{
-		item *temp = head;
+		item *temp = *head;
 
 		while(temp->next != NULL)
 		{
@@ -70,7 +70,7 @@ item DelQueue(item *head)
 	}
 }
 
-void RotateQ()
+void RotateQ(item **head)
 {
 	
 }
