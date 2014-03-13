@@ -1,5 +1,4 @@
 #include "q.h"
-#include <stdio.h>
 
 void expect(int expected, int actual)
 {
@@ -16,25 +15,28 @@ void expect(int expected, int actual)
 
 void test1()
 {
-	InitQueue();
-	item* test = NewItem();
+	item head;
+	InitQueue(&head);
+	item *test = NewItem();
 	test->payload = 2;
-
-	AddQueue(test);
+	AddQueue(&head, test);
 
 	int x = head->payload;
+	printf("%d\n", x);
 
-	expect(2, x);
+	//int x = head->payload;
+	//expect(2, x);*/
 }
 
 void test2()
 {
-	
+
 }
 
 
 int main()
 {
+	printf("yo\n");
 	test1();
 
 	return 0;

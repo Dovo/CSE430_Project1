@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 struct q
 {
@@ -9,60 +10,66 @@ struct q
 
 typedef struct q item;
 
-item* head;
-
 //default constructor sets payload to 0
 item* NewItem()
 {
-	item* p = malloc(sizeof(item));
+	item *p = malloc(sizeof(item));
 	p->payload = 0;
 	p->next = NULL;
 	p->prev = NULL;
 	return p;
 }
 
-void InitQueue()
+void InitQueue(item *head)
 {
-	head = NULL;
+	head = NewItem();
 }
 
-void AddQueue(item* p)
+void AddQueue(item *head, item *p)
 {
 	if(head == NULL)
 	{
-		head = p;
+		head = NewItem();
+		head->payload = p->payload;
+		head->next = p->next;
+		head->prev = p->prev;
+		return;
 	}
 
 	else
 	{
-		item* temp = head;
+		item *temp = head;
 
 		while(temp->next != NULL)
 		{
 			temp = temp->next;
 		}
 
-		temp->next = p;
+		temp->next->payload = p->payload;
+		temp->next->next = p->next;
+		temp->next->prev = p->prev;
+		return;
 	}
 }
 
-item* DelQueue()
+item DelQueue(item *head)
 {
 	if(head == NULL)
 	{
-		return NULL;
+		printf("Error: could not delete, queue is empty\n");
+		return *head;
 	}
 
 	else
 	{
-		item* temp = head;
+		item *temp = head;
 
 		while(temp->next != NULL)
 		{
 			temp = temp->next;
 		}
 
-		return temp;
+		return *temp;
 	}
 }
 
