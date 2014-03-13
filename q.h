@@ -4,50 +4,47 @@
 struct q
 {
 	int payload;
-	struct q* next;
-	struct q* prev;
+	struct q *next;
+	struct q *prev;
 };
 
 typedef struct q item;
 
 //default constructor sets payload to 0
-item* NewItem()
+item NewItem()
 {
 	item *p = malloc(sizeof(item));
 	p->payload = 0;
 	p->next = NULL;
 	p->prev = NULL;
-	return p;
+	return *p;
 }
 
-void InitQueue(item *head)
+void InitQueue(item **head)
 {
-	head = NewItem();
+	head = NULL;
 }
 
-void AddQueue(item *head, item *p)
+void AddQueue(item **head, item p)
 {
-	if(head == NULL)
+	if(*head == NULL)
 	{
-		head = NewItem();
-		head->payload = p->payload;
-		head->next = p->next;
-		head->prev = p->prev;
-		return;
+		*head = &p;
 	}
 
 	else
 	{
-		item *temp = head;
+		item *temp = *head;
 
 		while(temp->next != NULL)
 		{
 			temp = temp->next;
 		}
 
-		temp->next->payload = p->payload;
+		/*temp->next->payload = p->payload;
 		temp->next->next = p->next;
-		temp->next->prev = p->prev;
+		temp->next->prev = p->prev;*/
+		temp->next = &p;
 		return;
 	}
 }

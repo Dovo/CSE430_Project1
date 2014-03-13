@@ -15,17 +15,14 @@ void expect(int expected, int actual)
 
 void test1()
 {
-	item head;
+	item *head;
 	InitQueue(&head);
-	item *test = NewItem();
-	test->payload = 2;
+	item test = NewItem();
+	test.payload = 2;
 	AddQueue(&head, test);
-
 	int x = head->payload;
-	printf("%d\n", x);
 
-	//int x = head->payload;
-	//expect(2, x);*/
+	expect(2, x);
 }
 
 void test2()
@@ -36,7 +33,6 @@ void test2()
 
 int main()
 {
-	printf("yo\n");
 	test1();
 
 	return 0;
