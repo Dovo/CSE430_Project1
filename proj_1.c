@@ -13,27 +13,37 @@ void expect(int expected, int actual)
 	}
 }
 
-void test1()
+/* test initqueue and correct payload*/
+/*void test1()
 {
 	item *head;
 	InitQueue(&head);
 	item test = NewItem();
-	test.payload = 2;
+	test->payload = 2;
 	AddQueue(&head, test);
-	int x = head->payload;
+	int x = test->payload;
 
 	expect(2, x);
-}
+}*/
 
 void test2()
 {
+	item *head;
+	InitQueue(&head);
+	item test = NewItem();
+	test->payload = 2;
 
+	item test2 = NewItem();
+	test2->payload = 5;
+
+	AddQueue(&head, test);
+	AddQueue(&head, test2);
 }
 
 
 int main()
 {
-	test1();
+	test2();
 
 	return 0;
 }
